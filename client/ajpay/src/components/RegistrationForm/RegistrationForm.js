@@ -1,6 +1,5 @@
-import { Link, FormLabel, FormGroup, TextField, FormControl, Divider, Typography, makeStyles  } from '@material-ui/core'
+import { FormLabel, FormGroup, TextField, FormControl, Divider, Typography, makeStyles  } from '@material-ui/core'
 import {Link as RouteLink} from 'react-router-dom'
-
 const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
@@ -10,22 +9,22 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const LoginForm = ()=> {
+const RegistrationForm = ()=> {
     const classes = useStyles();
 
     return (
         <form>
             <FormControl className={classes.root} autoComplete="off">
-                <FormLabel component="label">                    
-                    <Typography component="h3" variant="h3">Login</Typography>
+                <FormLabel component="label">
+                    <Typography component="h3" variant="h3">Registration</Typography>
                 </FormLabel>
-                <TextField id="login" type="text" required label="Login here" variant="outlined" />
+                <TextField id="email" type="text" required label="Email" variant="outlined" />
                 <TextField id="password" type="password" required label="Password" variant="outlined" />
                 <Divider light />
-                <RouteLink className="linkBtn" to="/registration">Register</RouteLink>
+                <RouteLink className="linkBtn" to="/login">Login</RouteLink>
             </FormControl>
         </form>
     );
 }
 
-export default LoginForm
+export default RegistrationForm
