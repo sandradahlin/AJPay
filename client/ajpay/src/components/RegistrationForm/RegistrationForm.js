@@ -18,17 +18,17 @@ const RegistrationForm = (props)=> {
                 <FormLabel component="label">
                     <Typography component="h3" variant="h3">Registration</Typography>
                 </FormLabel>
-                <TextField id="email" type="text" required label="Email" variant="outlined"
+                <TextField id="email" type="text" required label="Email" variant="outlined" autoFocus error={props.emailError}
                     inputProps={
                         {ref: props.emailRef}
                     } 
                     onChange={(event)=>{props.emailHandler(event.target.value)}} />
-                <TextField id="password" type="password" required label="Password" variant="outlined" 
+                <TextField id="password" type="password" required label="Password" variant="outlined" error={props.passError}
                     inputProps={
                         {ref: props.passwordRef}
                     }
                     onChange={(event)=>{props.passwordHandler(event.target.value)}} />
-                <TextField id="password-confirm" type="password" required label="Confirm Password" variant="outlined" 
+                <TextField id="password-confirm" type="password" required label="Confirm Password" variant="outlined" error={props.passConfirmError}
                     inputProps={
                         {ref: props.passwordConfirmRef}
                     }
