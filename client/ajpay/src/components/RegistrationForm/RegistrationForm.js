@@ -1,4 +1,4 @@
-import { FormLabel, FormGroup, TextField, FormControl, Divider, Typography, makeStyles  } from '@material-ui/core'
+import { FormLabel, Button, TextField, FormControl, Divider, Typography, makeStyles  } from '@material-ui/core'
 import {Link as RouteLink} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -6,6 +6,10 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         width: '25ch',
       },
+      '& > button.MuiButton-fullWidth': {
+          width: '100%',
+          margin: theme.spacing(1, 'auto')
+      }
     },
 }))
 
@@ -23,7 +27,7 @@ const RegistrationForm = (props)=> {
                         {ref: props.emailRef}
                     } 
                     onChange={(event)=>{props.emailHandler(event.target.value)}} />
-                <TextField id="password" type="password" required label="Password" variant="outlined" error={props.passError}
+                <TextField id="password" type="password" required label="Password" variant="outlined" error={props.passError} 
                     inputProps={
                         {ref: props.passwordRef}
                     }
@@ -33,6 +37,7 @@ const RegistrationForm = (props)=> {
                         {ref: props.passwordConfirmRef}
                     }
                     onChange={(event)=>{props.passwordConfirmHandler(event.target.value)}} />
+                <Button variant="contained" color="primary" type="submit" fullWidth >Submit!</Button>
                 <Divider light />
                 <RouteLink className="linkBtn" to="/login">Login</RouteLink>
             </FormControl>

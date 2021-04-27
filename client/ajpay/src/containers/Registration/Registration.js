@@ -67,12 +67,14 @@ const Registration = ()=> {
     }, [enteredPassConfirm, passwordConfirmRef, passwordRef])
 
     const submitHandler = (event)=> {
+        console.log("Submitting!")
         event.preventDefault();
+        console.log("Submitted!")
         //submit to backend
     }
 
     return (
-        <RegistrationForm submit={submitHandler}
+        <RegistrationForm submitHandler={submitHandler}
          emailRef={emailRef} emailHandler={setEnteredEmail} emailError= {emailError}
          passwordRef={passwordRef}  passwordHandler={setEnteredPass} passError= {passError}
          passwordConfirmRef={passwordConfirmRef}  passwordConfirmHandler={setEnteredPassConfirm} passConfirmError={passConfirmError}
