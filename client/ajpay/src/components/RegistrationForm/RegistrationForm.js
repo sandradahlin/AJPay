@@ -9,17 +9,30 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const RegistrationForm = ()=> {
+const RegistrationForm = (props)=> {
     const classes = useStyles();
 
     return (
-        <form>
+        <form onSubmit={props.submitHandler}>
             <FormControl className={classes.root} autoComplete="off">
                 <FormLabel component="label">
                     <Typography component="h3" variant="h3">Registration</Typography>
                 </FormLabel>
-                <TextField id="email" type="text" required label="Email" variant="outlined" />
-                <TextField id="password" type="password" required label="Password" variant="outlined" />
+                <TextField id="email" type="text" required label="Email" variant="outlined"
+                    inputProps={
+                        {ref: props.emailRef}
+                    } 
+                    onChange={(event)=>{props.emailHandler(event.target.value)}} />
+                <TextField id="password" type="password" required label="Password" variant="outlined" 
+                    inputProps={
+                        {ref: props.passwordRef}
+                    }
+                    onChange={(event)=>{props.passwordHandler(event.target.value)}} />
+                <TextField id="password-confirm" type="password" required label="Confirm Password" variant="outlined" 
+                    inputProps={
+                        {ref: props.passwordConfirmRef}
+                    }
+                    onChange={(event)=>{props.passwordConfirmHandler(event.target.value)}} />
                 <Divider light />
                 <RouteLink className="linkBtn" to="/login">Login</RouteLink>
             </FormControl>
