@@ -1,8 +1,12 @@
-import { useState, useRef } from "react";
-import LoginForm from "../../components/LoginForm/LoginForm";
-import axios from "../../axios-auth";
+import { useState, useRef, useContext } from "react";
+import LoginForm from "../../../components/LoginForm/LoginForm";
+import axios from "../../../axios-auth";
+import {AuthContext} from './../../../context/auth-context'
+import { useHistory } from "react-router";
 
 const Login = () => {
+  const authContext = useContext(AuthContext)
+
   const [loginError, setLoginError] = useState(false);
   const loginRef = useRef();
   const passRef = useRef();
@@ -26,7 +30,8 @@ const Login = () => {
         localStorage.setItem("token", response.data.idToken);
         localStorage.setItem("expirationDate", expirationDate);
         localStorage.setItem("userId", response.data.localId);
-
+        
+        authContext.login()
         //redirect to logged in landing
         // start timer for auto log out if inactive
       })

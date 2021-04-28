@@ -1,9 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
-import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
-import { checkValidity } from "../../shared/validation";
+import RegistrationForm from "../../../components/RegistrationForm/RegistrationForm";
+import {AuthContext} from "./../.././../context/auth-context"
+import { checkValidity } from "../../../shared/validation";
 
 const Registration = () => {
+  const authContext = useContext(AuthContext)
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const emailRef = useRef();
@@ -88,7 +91,7 @@ const Registration = () => {
         localStorage.setItem("token", response.data.idToken);
         localStorage.setItem("expirationDate", expirationDate);
         localStorage.setItem("userId", response.data.localId);
-
+        authContext.login()
         //redirect to logged in landing
         // start timer for auto log out if inactive
       })
