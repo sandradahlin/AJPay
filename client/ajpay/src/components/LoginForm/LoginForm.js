@@ -29,8 +29,8 @@ const LoginForm = (props)=> {
                       null }
                     
                 </div>
-                <TextField id="login" type="text" required autoFocus label="Login here" variant="outlined" />
-                <TextField id="password" type="password" required label="Password" variant="outlined" />
+                <TextField id="login" type="text" required autoFocus label="Login here" variant="outlined" inputRef={props.loginRef} />
+                <TextField id="password" type="password" required label="Password" variant="outlined" inputRef={props.passRef}/>
                 <Button variant="contained" color="primary" type="submit" fullWidth >Login</Button>
                 <Divider light />
                 <RouteLink className="linkBtn" to="/registration">Register</RouteLink>
