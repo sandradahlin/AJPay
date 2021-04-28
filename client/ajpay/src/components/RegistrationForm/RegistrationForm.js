@@ -20,7 +20,7 @@ const RegistrationForm = (props)=> {
         <form onSubmit={props.submitHandler}>
             <FormControl className={classes.root} autoComplete="off">
                 <FormLabel component="label">
-                    <Typography component="h3" variant="h3">Registration</Typography>
+                    <Typography component="h3" variant="h3" align="left">Registration</Typography>
                 </FormLabel>
                 <TextField id="email" type="text" required label="Email" variant="outlined" autoFocus error={props.emailError}
                     inputProps={

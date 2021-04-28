@@ -1,4 +1,4 @@
-import { Link, FormLabel, FormGroup, TextField, FormControl, Divider, Typography, makeStyles  } from '@material-ui/core'
+import { Button, FormLabel, FormHelperText , TextField, FormControl, Divider, Typography, makeStyles  } from '@material-ui/core'
 import {Link as RouteLink} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -7,20 +7,31 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         width: '25ch',
       },
+      '& > button.MuiButton-fullWidth': {
+          width: '100%',
+          margin: theme.spacing(1, 'auto')
+      }
     },
 }))
 
-const LoginForm = ()=> {
+const LoginForm = (props)=> {
     const classes = useStyles();
 
     return (
-        <form>
+        <form onSubmit={props.loginHandler}>
             <FormControl className={classes.root} autoComplete="off">
                 <FormLabel component="label">                    
-                    <Typography component="h3" variant="h3">Login</Typography>
+                    <Typography component="h3" variant="h3" align="left">Login</Typography>
                 </FormLabel>
-                <TextField id="login" type="text" required label="Login here" variant="outlined" />
+                <div style={{height:'2ch'}}>
+                    {props.loginError ?
+                     <FormHelperText error> Login failed. Please try again.  </FormHelperText> :
+                      null }
+                    
+                </div>
+                <TextField id="login" type="text" required autoFocus label="Login here" variant="outlined" />
                 <TextField id="password" type="password" required label="Password" variant="outlined" />
+                <Button variant="contained" color="primary" type="submit" fullWidth >Login</Button>
                 <Divider light />
                 <RouteLink className="linkBtn" to="/registration">Register</RouteLink>
             </FormControl>
