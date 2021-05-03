@@ -1,4 +1,4 @@
-import { Button, FormLabel, FormHelperText , TextField, FormControl, Divider, Typography, makeStyles  } from '@material-ui/core'
+import { Button, FormLabel, FormHelperText , TextField, FormControl, Divider, Typography, makeStyles, Backdrop, CircularProgress } from '@material-ui/core'
 import {Link as RouteLink} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -12,13 +12,22 @@ const useStyles = makeStyles((theme) => ({
           margin: theme.spacing(1, 'auto')
       }
     },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    }
 }))
 
 const LoginForm = (props)=> {
     const classes = useStyles();
 
     return (
+        <>
+            <Backdrop className={classes.backdrop}  variant="outlined" open={props.working}>
+                <CircularProgress />
+            </Backdrop>
         <form onSubmit={props.loginHandler}>
+
             <FormControl className={classes.root} autoComplete="off">
                 <FormLabel component="label">                    
                     <Typography component="h3" variant="h3" align="left">Login</Typography>
@@ -35,7 +44,10 @@ const LoginForm = (props)=> {
                 <Divider light />
                 <RouteLink className="linkBtn" to="/registration">Register</RouteLink>
             </FormControl>
+            {/* <div>see: {props.test.loading.toString()}</div>
+            <div>see2: {props.test.authStarted.toString()}</div> */}
         </form>
+        </>
     );
 }
 
