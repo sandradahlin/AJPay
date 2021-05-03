@@ -1,10 +1,9 @@
 import { useState, useRef, useContext } from "react";
 import LoginForm from "../../../components/LoginForm/LoginForm";
-import {AuthContext} from '../../../context/auth-context'
+import { AuthContext } from "../../../context/auth-context";
 
 const Login = () => {
-  
-  const authContext = useContext(AuthContext)
+  const authContext = useContext(AuthContext);
   const [loginError, setLoginError] = useState(false);
   const [working, setWorking] = useState(false);
   const loginRef = useRef();
@@ -34,9 +33,7 @@ const Login = () => {
       }, 1000);
     }
 
-
     //fail, setLoginError and working false
-    
   };
 
   return (
@@ -44,8 +41,8 @@ const Login = () => {
       loginHandler={loginHandler}
       loginError={loginError}
       loginRef={loginRef}
-      passRef={passRef} 
-      working= {working}
+      passRef={passRef}
+      working={working}
     />
   );
 };

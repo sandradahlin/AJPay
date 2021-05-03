@@ -2,10 +2,10 @@ import { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import RegistrationForm from "../../../components/RegistrationForm/RegistrationForm";
 import { checkValidity } from "../../../shared/validation";
-import {AuthContext} from '../../../context/auth-context'
+import { AuthContext } from "../../../context/auth-context";
 
 const Registration = () => {
-  const authContext = useContext(AuthContext)
+  const authContext = useContext(AuthContext);
 
   const [registerError, setRegisterError] = useState(false);
   const [working, setWorking] = useState(false);
@@ -78,8 +78,7 @@ const Registration = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    if(emailError ||passError||passConfirmError)
-      return
+    if (emailError || passError || passConfirmError) return;
 
     setWorking(true);
     console.log(event);
@@ -88,10 +87,10 @@ const Registration = () => {
       password: enteredPass,
       returnSecureToken: true,
     };
-    
+
     //axios send authData as payload
     //success, we get back a token and expiry date
-    if (authData.password === "pass") {
+    if (authData.password === "passpass") {
       setTimeout(() => {
         const expirationDate = new Date(new Date().getTime() + 60 * 5 * 1000);
 
@@ -105,7 +104,6 @@ const Registration = () => {
     }
 
     //fail, setLoginError
-
   };
 
   return (
@@ -119,7 +117,7 @@ const Registration = () => {
       passError={passError}
       passwordConfirmRef={passwordConfirmRef}
       passwordConfirmHandler={setEnteredPassConfirm}
-      passConfirmError={passConfirmError} 
+      passConfirmError={passConfirmError}
       working={working}
       registerError={registerError}
     />
