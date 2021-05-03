@@ -1,18 +1,15 @@
 import { useState, useRef, useContext } from "react";
 import LoginForm from "../../../components/LoginForm/LoginForm";
-import axios from "../../../axios-auth";
-import {AuthContext} from './../../../context/auth-context'
-import { useHistory } from "react-router";
+import {AuthContext} from '../../../context/auth-context'
 
 const Login = () => {
+  
   const authContext = useContext(AuthContext)
-
   const [loginError, setLoginError] = useState(false);
   const loginRef = useRef();
   const passRef = useRef();
 
   const loginHandler = (event) => {
-    console.log("Attempting login!");
     event.preventDefault();
     const authData = {
       email: loginRef.current.value,
@@ -20,24 +17,16 @@ const Login = () => {
       returnSecureToken: true,
     };
 
-    console.log(authData);
-    axios
-      .post("/login", authData)
-      .then((response) => {
+    //axios send authData as payload
+    //success, we get back a token and expiry date
+    setTimeout(()=>{
         const expirationDate = new Date(
-          new Date().getTime() + response.data.expiresIn * 1000
-        );
-        localStorage.setItem("token", response.data.idToken);
-        localStorage.setItem("expirationDate", expirationDate);
-        localStorage.setItem("userId", response.data.localId);
+        new Date().getTime() + (60*5) * 1000);
         
-        authContext.login()
-        //redirect to logged in landing
-        // start timer for auto log out if inactive
-      })
-      .catch((err) => {
-        setLoginError(true);
-      });
+        authContext.login(99,expirationDate)
+    }, 1000)
+
+    //fail, setLoginError
   };
 
   return (

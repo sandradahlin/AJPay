@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import RegistrationForm from "../../../components/RegistrationForm/RegistrationForm";
-import {AuthContext} from "./../.././../context/auth-context"
 import { checkValidity } from "../../../shared/validation";
+import {AuthContext} from '../../../context/auth-context'
 
 const Registration = () => {
   const authContext = useContext(AuthContext)
@@ -82,25 +82,18 @@ const Registration = () => {
       returnSecureToken: true,
     };
 
-    axios
-      .post("/register", authData)
-      .then((response) => {
-        const expirationDate = new Date(
-          new Date().getTime() + response.data.expiresIn * 1000
-        );
-        localStorage.setItem("token", response.data.idToken);
-        localStorage.setItem("expirationDate", expirationDate);
-        localStorage.setItem("userId", response.data.localId);
-        authContext.login()
-        //redirect to logged in landing
-        // start timer for auto log out if inactive
-      })
-      .catch((err) => {
-        // setLoginError(true);
-      });
+    
+    //axios send authData as payload
+    //success, we get back a token and expiry date
+    setTimeout(()=>{
+      const expirationDate = new Date(
+      new Date().getTime() + (60*5) * 1000);
+      
+      authContext.login(99,expirationDate)
+  }, 1000)
 
-    console.log("Submitted!");
-    //submit to backend
+    //fail, setLoginError
+
   };
 
   return (
