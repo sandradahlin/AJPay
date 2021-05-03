@@ -52,7 +52,7 @@ const RegistrationForm = (props)=> {
                         {ref: props.passwordConfirmRef}
                     }
                     onChange={(event)=>{props.passwordConfirmHandler(event.target.value)}} />
-                <Button variant="contained" color="primary" type="submit" fullWidth >Submit!</Button>
+                <Button disabled={(props.emailError || props.passError || props.passConfirmError) ? true : false} variant="contained" color="primary" type="submit" fullWidth >Submit!</Button>
                 <Divider light />
                 <RouteLink className="linkBtn" to="/login">Login</RouteLink>
             </FormControl>

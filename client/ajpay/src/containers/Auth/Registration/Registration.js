@@ -77,6 +77,10 @@ const Registration = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    if(emailError ||passError||passConfirmError)
+      return
+
     setWorking(true);
     console.log(event);
     const authData = {
@@ -84,7 +88,6 @@ const Registration = () => {
       password: enteredPass,
       returnSecureToken: true,
     };
-
     
     //axios send authData as payload
     //success, we get back a token and expiry date
