@@ -1,4 +1,4 @@
-import { FormLabel, Button, TextField, FormControl, Divider, Typography, makeStyles  } from '@material-ui/core'
+import { FormLabel, Button, TextField, FormControl, Divider, Typography, makeStyles, FormHelperText, Backdrop, CircularProgress } from '@material-ui/core'
 import {Link as RouteLink} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,17 +11,32 @@ const useStyles = makeStyles((theme) => ({
           margin: theme.spacing(1, 'auto')
       }
     },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+      }
 }))
 
 const RegistrationForm = (props)=> {
     const classes = useStyles();
 
     return (
+        <>
+            <Backdrop className={classes.backdrop} variant="outlined" open={props.working}>
+                <CircularProgress />
+            </Backdrop>
         <form onSubmit={props.submitHandler}>
+
             <FormControl className={classes.root} autoComplete="off">
                 <FormLabel component="label">
                     <Typography component="h3" variant="h3" align="left">Registration</Typography>
                 </FormLabel>
+                <div style={{height:'2ch'}}>
+                    {props.registerError ?
+                     <FormHelperText error> Registration failed. Please try again.  </FormHelperText> :
+                      null }
+                    
+                </div>
                 <TextField id="email" type="text" required label="Email" variant="outlined" autoFocus error={props.emailError}
                     inputProps={
                         {ref: props.emailRef}
@@ -42,6 +57,7 @@ const RegistrationForm = (props)=> {
                 <RouteLink className="linkBtn" to="/login">Login</RouteLink>
             </FormControl>
         </form>
+        </>
     );
 }
 

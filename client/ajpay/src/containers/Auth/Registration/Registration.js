@@ -7,6 +7,9 @@ import {AuthContext} from '../../../context/auth-context'
 const Registration = () => {
   const authContext = useContext(AuthContext)
 
+  const [registerError, setRegisterError] = useState(false);
+  const [working, setWorking] = useState(false);
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const emailRef = useRef();
@@ -73,8 +76,8 @@ const Registration = () => {
   }, [enteredPassConfirm, passwordConfirmRef, passwordRef]);
 
   const submitHandler = (event) => {
-    console.log("Submitting!");
     event.preventDefault();
+    setWorking(true);
     console.log(event);
     const authData = {
       email: enteredEmail,
@@ -85,12 +88,18 @@ const Registration = () => {
     
     //axios send authData as payload
     //success, we get back a token and expiry date
-    setTimeout(()=>{
-      const expirationDate = new Date(
-      new Date().getTime() + (60*5) * 1000);
-      
-      authContext.login(99,expirationDate)
-  }, 1000)
+    if (authData.password === "pass") {
+      setTimeout(() => {
+        const expirationDate = new Date(new Date().getTime() + 60 * 5 * 1000);
+
+        authContext.login(99, expirationDate);
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        setRegisterError(true);
+        setWorking(false);
+      }, 1000);
+    }
 
     //fail, setLoginError
 
@@ -107,7 +116,9 @@ const Registration = () => {
       passError={passError}
       passwordConfirmRef={passwordConfirmRef}
       passwordConfirmHandler={setEnteredPassConfirm}
-      passConfirmError={passConfirmError}
+      passConfirmError={passConfirmError} 
+      working={working}
+      registerError={registerError}
     />
   );
 };
