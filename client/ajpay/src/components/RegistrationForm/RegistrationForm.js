@@ -1,5 +1,5 @@
 import {
-  FormLabel,
+  Container,
   Button,
   TextField,
   FormControl,
@@ -9,6 +9,7 @@ import {
   FormHelperText,
   Backdrop,
   CircularProgress,
+  Link
 } from "@material-ui/core";
 import { Link as RouteLink } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +33,7 @@ const RegistrationForm = (props) => {
   const classes = useStyles();
 
   return (
-    <>
+    <Container>
       <Backdrop
         className={classes.backdrop}
         variant="outlined"
@@ -40,13 +41,11 @@ const RegistrationForm = (props) => {
       >
         <CircularProgress />
       </Backdrop>
+      <Typography component="h3" variant="h4" align="center">
+            Registration
+          </Typography>
       <form onSubmit={props.submitHandler}>
         <FormControl className={classes.root} autoComplete="off">
-          <FormLabel component="label">
-            <Typography component="h3" variant="h3" align="left">
-              Registration
-            </Typography>
-          </FormLabel>
           <div style={{ height: "2ch" }}>
             {props.registerError ? (
               <FormHelperText error>
@@ -106,12 +105,12 @@ const RegistrationForm = (props) => {
             Submit!
           </Button>
           <Divider light />
-          <RouteLink className="linkBtn" to="/login">
+          <Link variant="button" align="center" underline="none" color="textPrimary" style={{margin: "0 auto"}} component={RouteLink} to="/login">
             Login
-          </RouteLink>
+          </Link>
         </FormControl>
       </form>
-    </>
+    </Container>
   );
 };
 

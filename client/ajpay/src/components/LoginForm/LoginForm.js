@@ -1,6 +1,6 @@
 import {
   Button,
-  FormLabel,
+  Container,
   FormHelperText,
   TextField,
   FormControl,
@@ -9,6 +9,7 @@ import {
   makeStyles,
   Backdrop,
   CircularProgress,
+  Link
 } from "@material-ui/core";
 import { Link as RouteLink } from "react-router-dom";
 
@@ -33,7 +34,7 @@ const LoginForm = (props) => {
   const classes = useStyles();
 
   return (
-    <>
+    <Container>
       <Backdrop
         className={classes.backdrop}
         variant="outlined"
@@ -41,18 +42,15 @@ const LoginForm = (props) => {
       >
         <CircularProgress />
       </Backdrop>
+      <Typography component="h3" variant="h4" align="center">
+            Login
+      </Typography>
       <form onSubmit={props.loginHandler}>
         <FormControl className={classes.root} autoComplete="off">
-          <FormLabel component="label">
-            <Typography component="h3" variant="h3" align="left">
-              Login
-            </Typography>
-          </FormLabel>
           <div style={{ height: "2ch" }}>
             {props.loginError ? (
               <FormHelperText error>
-                {" "}
-                Login failed. Please try again.{" "}
+                Login failed. Please try again.
               </FormHelperText>
             ) : null}
           </div>
@@ -77,14 +75,14 @@ const LoginForm = (props) => {
             Login
           </Button>
           <Divider light />
-          <RouteLink className="linkBtn" to="/registration">
+          <Link variant="button" align="center" underline="none" color="textPrimary" style={{margin: "0 auto"}} component={RouteLink} to="/registration">
             Register
-          </RouteLink>
+          </Link>
         </FormControl>
         {/* <div>see: {props.test.loading.toString()}</div>
             <div>see2: {props.test.authStarted.toString()}</div> */}
       </form>
-    </>
+    </Container>
   );
 };
 

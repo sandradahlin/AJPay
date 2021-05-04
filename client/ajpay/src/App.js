@@ -1,7 +1,6 @@
-import "./App.css";
 import { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { Container } from "@material-ui/core";
+import { Grid, Container, Typography } from "@material-ui/core";
 import { ImageM } from "./components/Image/Image";
 import Logo from "./assets/logo/android-chrome-192x192.png";
 import Login from "./containers/Auth/Login/Login";
@@ -23,7 +22,7 @@ function App() {
     routes = (
       <Switch>
         <Route
-          path="pay"
+          path="/pay"
           render={() => {
             return <div>logged in!</div>;
           }}
@@ -34,12 +33,24 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Container maxWidth="sm">
-        <ImageM src={Logo} alt="AjPay"></ImageM>
-        {routes}
-      </Container>
-    </div>
+    <Container className="App">
+      <Grid
+        container
+        direction="column"
+        justify="space-between"
+        alignItems="center"
+        spacing={3} 
+        style={{paddingTop: '8px'}}
+      >
+
+        <Grid item>
+          <ImageM src={Logo} alt="AjPay"></ImageM>
+        </Grid>
+        <Grid item >
+          {routes}
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
