@@ -53,6 +53,7 @@ const AuthContextProvider = (props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
 
+    //fire axios post logout to server
     if (logoutTimer) {
       clearTimeout(logoutTimer);
     }
@@ -68,6 +69,11 @@ const AuthContextProvider = (props) => {
     logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
 
+  const refreshHandler = (expirationTime) => {
+    const token = retrieveStoredToken();
+    loginHandler(token, expirationTime);
+  }
+
   useEffect(() => {
     if (tokenData) {
       console.log(tokenData.duration);
@@ -80,6 +86,7 @@ const AuthContextProvider = (props) => {
     isAuth: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    refresh: refreshHandler
   };
 
   return (

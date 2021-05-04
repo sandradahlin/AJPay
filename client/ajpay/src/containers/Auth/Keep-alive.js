@@ -13,7 +13,7 @@ const KeepAlive = () => {
             const expirationDate = new Date(
               new Date().getTime() + response.data.expiresIn * 1000
             );
-            authContext.login(response.token, expirationDate)
+            authContext.login(response.token, expirationDate) //or equivalent, important to reset auto logout timer as well
           })
           .catch((err) => {
             // setLoginError(true);
