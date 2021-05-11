@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
 const BottomNavigation = (props) => {
   const classes = useStyles();
   const authContext = useContext(AuthContext);
-  let content = <>d</>;
+  let content = <></>;
 
   if(authContext.isAuth) 
     content = (
