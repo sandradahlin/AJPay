@@ -11,6 +11,7 @@ import {
   CircularProgress,
   Link
 } from "@material-ui/core";
+
 import { Link as RouteLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +46,7 @@ const LoginForm = (props) => {
       <Typography component="h3" variant="h4" align="center">
             Login
       </Typography>
-      <form onSubmit={props.loginHandler}>
+      <Container component="form" align="center" onSubmit={props.loginHandler}>
         <FormControl className={classes.root} autoComplete="off">
           <div style={{ height: "2ch" }}>
             {props.loginError ? (
@@ -81,7 +82,7 @@ const LoginForm = (props) => {
         </FormControl>
         {/* <div>see: {props.test.loading.toString()}</div>
             <div>see2: {props.test.authStarted.toString()}</div> */}
-      </form>
+      </Container>
     </Container>
   );
 };

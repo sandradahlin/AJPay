@@ -12,6 +12,7 @@ import {
   Link
 } from "@material-ui/core";
 import { Link as RouteLink } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -44,7 +45,7 @@ const RegistrationForm = (props) => {
       <Typography component="h3" variant="h4" align="center">
             Registration
           </Typography>
-      <form onSubmit={props.submitHandler}>
+      <Container component="form" align="center" onSubmit={props.submitHandler}>
         <FormControl className={classes.root} autoComplete="off">
           <div style={{ height: "2ch" }}>
             {props.registerError ? (
@@ -109,7 +110,7 @@ const RegistrationForm = (props) => {
             Login
           </Link>
         </FormControl>
-      </form>
+      </Container>
     </Container>
   );
 };
