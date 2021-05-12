@@ -1,10 +1,12 @@
 const express = require("express");
+
 const connectDB = require("./config/db");
 const route = require("./routes");
+const establishSession = require("./services/session");
 const app = express();
 // const getUsers = require("./routes/register");
 connectDB();
-
+establishSession(app);
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {

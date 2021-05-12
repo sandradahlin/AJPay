@@ -11,7 +11,10 @@ const connectDB = () => {
       useFindAndModify: false,
       useUnifiedTopology: true,
     })
-    .then(() => console.log("MongoDB connected"))
+    .then(
+      () => (global.db = mongoose.connection),
+      console.log("MongoDB connected")
+    )
     .catch((err) => {
       console.error(err.message);
       process.exit(1);
