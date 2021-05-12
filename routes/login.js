@@ -27,7 +27,6 @@ const login = (app) => {
         if (user) {
           if (user.password === password) {
             req.session.user = user;
-            console.log(req.session);
             return res.status(200).json({ success: true, loggedInUser: user });
           } else {
             return res
