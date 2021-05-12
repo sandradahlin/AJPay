@@ -35,8 +35,7 @@ import {
   }));
   
 const PayForm = (props)=> {
-    const payHandler = ()=>{};
-    const addRecipientHandler = ()=>{}
+
     const classes = useStyles();
     return (
       <Container>
@@ -50,11 +49,11 @@ const PayForm = (props)=> {
         <Typography component="h3" variant="h4" align="center">
           Pay
         </Typography>
-        <Container component="form" onSubmit={payHandler} align="center">
+        <Container component="form" onSubmit={props.payHandler} align="center">
           <FormControl className={classes.root} autoComplete="off">
             <TextField
                 id="recipient"
-                type="phone"
+                type="text"
                 required
                 autoFocus
                 label="Recipient"
@@ -64,9 +63,9 @@ const PayForm = (props)=> {
                     <InputAdornment position="end">
                       <IconButton
                         color="primary"
-                        // aria-label="toggle password visibility"
-                        onClick={addRecipientHandler}
-                        onMouseDown={addRecipientHandler}
+                        aria-label="pick recipient"
+                        onClick={(event)=>{props.addRecipientHandler(event)}}
+                        // onMouseDown={(event)=>{props.addRecipientHandler(event)}}
                       >
                         <AddCircleIcon/>
                       </IconButton>
@@ -85,11 +84,11 @@ const PayForm = (props)=> {
                 <TextField
                 id="message"
                 type="text"
-                required
                 autoFocus
                 label="Message"
                 variant="outlined"
-                // inputRef={props.loginRef}
+                inputRef={props.messageRef}
+                onChange={props.changeValueHandler("message")}
             />
           </FormControl>
 
