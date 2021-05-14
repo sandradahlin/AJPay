@@ -106,3 +106,5 @@ dist
 node_modules
 
 config/default.json
+connectionstring.js
+settings.js
